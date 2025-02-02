@@ -6,7 +6,7 @@ export class PlanRepositoryImpl implements PlanRepository {
     private plans: Plan[] = [
         new Plan("Basic", 9.99, Billing_Cycle.MONTHLY),
         new Plan("Premium", 19.99, Billing_Cycle.MONTHLY),
-        new Plan("Ultimate", 29.99, Billing_Cycle.YEARLY),
+        new Plan("Ultimate", 29.99, Billing_Cycle.ANNUAL),
     ]
 
     findAll(): Plan[] {

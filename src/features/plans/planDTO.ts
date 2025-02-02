@@ -1,7 +1,7 @@
 
 export enum Billing_Cycle {
     MONTHLY = "monthly",
-    YEARLY = "yearly"
+    ANNUAL = "annual"
 }
 
 
