@@ -7,7 +7,7 @@ const subscriptionRoutes: FastifyPluginAsync = async (fastify: FastifyInstance) 
     const { plan_id, customer_email, status, next_billing_date } = request.body as SubscriptionDTO;
     try {
       const response = await subscriptionModule.createSubscription({ plan_id, customer_email, status, next_billing_date });
-      return reply.status(201).send(response); // Successfully created subscription
+      return reply.status(201).send(response);
     } catch (error: any) {
       return reply.status(500).send({ error: 'Internal Server Error', message: error.message });
     }

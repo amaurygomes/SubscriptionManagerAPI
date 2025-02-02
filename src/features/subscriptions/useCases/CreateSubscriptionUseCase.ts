@@ -1,6 +1,6 @@
 import { SubscriptionRepository } from "../repositories/SubscriptionRepository";
-import { SubscriptionDTO } from "../subscriptionDTO";
-import { SubscriptionStatus } from "../entities/Subscription";
+import { SubscriptionDTO, SubscriptionStatus } from "../subscriptionDTO";
+
 
 export class CreateSubscriptionUseCase {
   constructor(private subscriptionRepository: SubscriptionRepository) {}
