@@ -1,4 +1,3 @@
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -8,7 +7,30 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Plan {
+  id            String         @id
+  name          String
+  price         Float
+  billing_cycle String
+  subscriptions Subscription[]
+
+  @@map("plans")
+}
+
+enum SubscriptionStatus {
+  PENDING
+  ACTIVE
+  CANCELED
+  SUSPENDED
+}
 
 model Subscription {
-  @@ma
+  id                String             @id
+  plan_id           String
+  customer_email    String
+  status            SubscriptionStatus
+  next_billing_date DateTime
+  plan              Plan               @relation(fields: [plan_id], references: [id])
+
+  @@map("subscriptions")
 }

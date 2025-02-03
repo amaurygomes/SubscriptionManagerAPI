@@ -6,8 +6,15 @@ export enum Billing_Cycle {
 
 
 export interface PlanDTO {
-    id?: string;
     name: string;
     price: number;
     billing_cycle: Billing_Cycle;
 }
+
+export interface PlanOutputDTO {
+    id: string;
+    name: string;
+    price: number;
+    billing_cycle: Billing_Cycle;
+}
+
