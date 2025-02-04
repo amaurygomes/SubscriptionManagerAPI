@@ -8,17 +8,6 @@ const prisma = new PrismaClient()
 
 export class PlanRepositoryImpl implements PlanRepository {
 
-    async findAll(): Promise<PlanOutputDTO[]> {
-        const plans = await prisma.plan.findMany();
-
-        return plans.map(plan => ({
-            id: plan.id,
-            name: plan.name,
-            price: plan.price,
-            billing_cycle: plan.billing_cycle as Billing_Cycle
-        }));
-    }
-
     async save(planData: PlanDTO): Promise<void> {
         const newPlan = new Plan(planData.name, planData.price, planData.billing_cycle)
         await prisma.plan.create(
@@ -32,6 +21,41 @@ export class PlanRepositoryImpl implements PlanRepository {
             }
         )
         return
+    }
+
+    async findById(id: string): Promise<PlanOutputDTO> {
+        const plan = await prisma.plan.findUnique({
+            where: {
+                id: id
+            }
+        });
+
+        if (plan) {
+            const planOut: PlanOutputDTO = {
+                id: plan.id,
+                name: plan.name,
+                price: plan.price,
+                billing_cycle: plan.billing_cycle as Billing_Cycle,
+            };
+
+            return planOut;
+        }
+
+        throw new Error(`The plan with the given (${id}) does not exist`);
+
+    }
+
+
+
+    async findAll(): Promise<PlanOutputDTO[]> {
+        const plans = await prisma.plan.findMany();
+
+        return plans.map(plan => ({
+            id: plan.id,
+            name: plan.name,
+            price: plan.price,
+            billing_cycle: plan.billing_cycle as Billing_Cycle
+        }));
     }
 
     async deleteById(id: string): Promise<void> {

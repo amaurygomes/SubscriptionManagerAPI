@@ -2,13 +2,14 @@ import { PlanDTO } from "../planDTO";
 import { PlanRepository } from "../repositories/PlanRepository";
 
 export class ListPlansUseCase {
-    constructor(private planRepository: PlanRepository) {}
+    constructor(private planRepository: PlanRepository) { }
 
-    execute(): PlanDTO[] {
-        const plans = this.planRepository.findAll();
+    async execute(): Promise<PlanDTO[]> {
+
+        const plans = await this.planRepository.findAll();
 
         if (plans.length === 0) {
-            console.log("No plans found.");
+            throw new Error("No plan found");
         }
 
         return plans;

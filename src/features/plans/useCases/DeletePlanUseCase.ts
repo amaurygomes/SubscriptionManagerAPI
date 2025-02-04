@@ -1,10 +1,23 @@
+
 import { PlanRepository } from "../repositories/PlanRepository";
 
 export class DeletePlansUseCase {
     constructor(private planRepository: PlanRepository) { }
 
-    execute(id: string): void {
-        const plans = this.planRepository.findAll();
-        throw new Error("Method not implemented")
+    async execute(id: string): Promise<{ status: number, message: string }> {
+
+        const plan = await this.planRepository.findById(id)
+
+        if (plan) {
+            this.planRepository.deleteById(id)
+        }
+
+        return {
+            status: 200,
+            message: "Plan deleted"
+        }
+
+
+
     }
 }
