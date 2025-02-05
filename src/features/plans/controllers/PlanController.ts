@@ -1,6 +1,6 @@
 import { DeletePlansUseCase } from "../useCases/DeletePlanUseCase";
 import { ListPlansUseCase } from "../useCases/ListPlansUseCase";
-import { SUCCESS_MESSAGES } from "@/messages/PlanMessage";
+import { SUCCESS_MESSAGES } from "@/messages/Message";
 import { CreatePlanUseCase } from "../useCases/CreatePlanUseCase";
 import { PlanInputDTO } from "../PlanDTO";
 

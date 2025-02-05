@@ -18,20 +18,13 @@ model Plan {
   @@map("plans")
 }
 
-enum SubscriptionStatus {
-  PENDING
-  ACTIVE
-  CANCELED
-  SUSPENDED
-}
-
 model Subscription {
-  id                String             @id
+  id                String   @id
   plan_id           String
   customer_email    String
-  status            SubscriptionStatus
+  status            String
   next_billing_date DateTime
-  plan              Plan               @relation(fields: [plan_id], references: [id])
+  plan              Plan     @relation(fields: [plan_id], references: [id])
 
   @@map("subscriptions")
 }

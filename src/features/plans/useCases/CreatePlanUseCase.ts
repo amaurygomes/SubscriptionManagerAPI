@@ -1,6 +1,6 @@
 import { CustomError } from "@/messages/errors/CustomError";
 import { PlanRepository } from "@/features/plans/repositories/PlanRepository";
-import { ERROR_MESSAGES } from "@/messages/PlanMessage";
+import { ERROR_MESSAGES } from "@/messages/Message";
 import { PlanInputDTO } from "../PlanDTO";
 
 

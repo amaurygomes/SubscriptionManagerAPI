@@ -1,16 +1,6 @@
 import { FastifyInstance, FastifyPluginAsync } from 'fastify';
 import { planModule } from '@/features/plans/PlanModule';
-import { Billing_Cycle } from '@/enums/BillingCycle';
-
-
-
-
-interface CreatePlan {
-  name: string;
-  price: number;
-  isActive: boolean;
-  billing_cycle: Billing_Cycle;
-}
+import { PlanInputDTO } from '@/features/plans/PlanDTO';
 
 const planRoutes: FastifyPluginAsync = async (fastify: FastifyInstance) => {
   fastify.get('/plans', async (request, reply) => {
@@ -27,7 +17,7 @@ const planRoutes: FastifyPluginAsync = async (fastify: FastifyInstance) => {
 
   fastify.post('/plans', async (request, reply) => {
     try {
-      const { name, price, isActive, billing_cycle } = request.body as CreatePlan;
+      const { name, price, isActive, billing_cycle } = request.body as PlanInputDTO;
       const response = await planModule.createPlan({ name, price, isActive, billing_cycle });
       return reply.status(201).send(response);
     } catch (error: any) {

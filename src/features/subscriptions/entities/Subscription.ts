@@ -1,7 +1,5 @@
 import { SubscriptionStatus } from "@/enums/SubscriptionStatus";
-import { v4 as uuidv4 } from "uuid";
-
-
+import { generateIdWithPrefix } from "@/helpers/GenerateIdWithPrefixHelper";
 
 export class Subscription {
     private _id: string;
@@ -10,8 +8,8 @@ export class Subscription {
     private _status: SubscriptionStatus;
     private _next_billing_date: Date;
 
-    constructor(plan_id: string, customer_email: string, status: SubscriptionStatus = SubscriptionStatus.PENDING, next_billing_date: Date) {
-        this._id = uuidv4();
+    constructor(plan_id: string, customer_email: string, status: SubscriptionStatus = SubscriptionStatus.PENDING, next_billing_date: Date = new Date(0)) {
+        this._id = generateIdWithPrefix('sub');
         this._plan_id = plan_id;
         this._customer_email = customer_email;
         this._status = status;

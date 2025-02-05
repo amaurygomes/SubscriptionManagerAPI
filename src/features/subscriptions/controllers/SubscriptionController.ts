@@ -1,3 +1,4 @@
+import { SUCCESS_MESSAGES } from "@/messages/Message";
 import { SubscriptionInputDTO } from "../SubscriptionDTO";
 import { CreateSubscriptionUseCase } from "../useCases/CreateSubscriptionUseCase";
 
@@ -8,7 +9,11 @@ export class SubscriptionController {
   ) { }
 
   async createSubscription(data: SubscriptionInputDTO) {
-    return await this.createSubscriptionUseCase.execute(data);
+    await this.createSubscriptionUseCase.execute(data);
+    return {
+      statuscode: 201,
+      message: SUCCESS_MESSAGES.subscriptionCreated(data.customer_email)
+    }
   }
 
 }

@@ -1,10 +1,9 @@
 import { Plan } from "../entities/Plan";
 import { Billing_Cycle } from "@/enums/BillingCycle";
 import { PlanRepository } from "./PlanRepository";
-
-import { PrismaClient } from '@prisma/client'
 import { PlanInputDTO, PlanOutputDTO } from "../PlanDTO";
 
+import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
