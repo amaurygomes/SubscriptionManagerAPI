@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { SubscriptionStatus } from "../subscriptionDTO";
+import { SubscriptionStatus } from "../SubscriptionDTO";
 
 
 export class Subscription {

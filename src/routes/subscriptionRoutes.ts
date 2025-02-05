@@ -1,6 +1,6 @@
 import { FastifyInstance, FastifyPluginAsync } from 'fastify';
-import { subscriptionModule } from '@/features/subscriptions/subscriptionModule';
-import { SubscriptionDTO } from '@/features/subscriptions/subscriptionDTO';
+import { subscriptionModule } from '@/features/subscriptions/SubscriptionModule';
+import { SubscriptionDTO } from '@/features/subscriptions/SubscriptionDTO';
 
 const subscriptionRoutes: FastifyPluginAsync = async (fastify: FastifyInstance) => {
   fastify.post('/subscriptions', async (request, reply) => {

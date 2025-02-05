@@ -1,4 +1,4 @@
-import { SubscriptionDTO, SubscriptionStatus } from "../subscriptionDTO";
+import { SubscriptionDTO, SubscriptionStatus } from "../SubscriptionDTO";
 import { SubscriptionRepository } from "./SubscriptionRepository";
 
 export class SubscriptionRepositoryImpl implements SubscriptionRepository {

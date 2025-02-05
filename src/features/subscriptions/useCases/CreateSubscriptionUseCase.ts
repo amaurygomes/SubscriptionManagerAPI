@@ -1,13 +1,13 @@
 import { SubscriptionRepository } from "../repositories/SubscriptionRepository";
-import { Billing_Cycle, SubscriptionDTO, SubscriptionStatus } from "../subscriptionDTO";
+import { Billing_Cycle, SubscriptionDTO, SubscriptionStatus } from "../SubscriptionDTO";
 
 
 export class CreateSubscriptionUseCase {
-  constructor(private subscriptionRepository: SubscriptionRepository) {}
+  constructor(private subscriptionRepository: SubscriptionRepository) { }
 
-  execute(subscriptionData: SubscriptionDTO): SubscriptionDTO  {
+  execute(subscriptionData: SubscriptionDTO): SubscriptionDTO {
 
-    
+
 
     const subscriptionToSave: SubscriptionDTO = {
       ...subscriptionData,

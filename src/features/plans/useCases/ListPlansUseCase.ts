@@ -1,5 +1,7 @@
-import { PlanDTO } from "../planDTO";
+import { CustomError } from "@/errors/CustomError";
+import { PlanDTO } from "../PlanDTO";
 import { PlanRepository } from "../repositories/PlanRepository";
+import { ERROR_MESSAGES } from "@/messages/PlanMessage";
 
 export class ListPlansUseCase {
     constructor(private planRepository: PlanRepository) { }
@@ -9,7 +11,7 @@ export class ListPlansUseCase {
         const plans = await this.planRepository.findAll();
 
         if (plans.length === 0) {
-            throw new Error("No plan found");
+            throw new CustomError(404, ERROR_MESSAGES.planNotFound);
         }
 
         return plans;

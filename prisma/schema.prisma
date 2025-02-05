@@ -9,8 +9,9 @@ datasource db {
 
 model Plan {
   id            String         @id
-  name          String
+  name          String         @unique
   price         Float
+  isActive      Boolean        @default(true)
   billing_cycle String
   subscriptions Subscription[]
 

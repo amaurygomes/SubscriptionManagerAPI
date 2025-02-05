@@ -1,23 +1,20 @@
-
+import { CustomError } from "@/errors/CustomError";
 import { PlanRepository } from "../repositories/PlanRepository";
+import { ERROR_MESSAGES } from "@/messages/PlanMessage";
+
 
 export class DeletePlansUseCase {
     constructor(private planRepository: PlanRepository) { }
 
-    async execute(id: string): Promise<{ status: number, message: string }> {
+    async execute(id: string): Promise<void> {
 
         const plan = await this.planRepository.findById(id)
 
-        if (plan) {
-            this.planRepository.deleteById(id)
+        if (!plan) {
+            throw new CustomError(404, ERROR_MESSAGES.planNotFound)
         }
 
-        return {
-            status: 200,
-            message: "Plan deleted"
-        }
-
-
+        this.planRepository.deleteById(id)
 
     }
 }

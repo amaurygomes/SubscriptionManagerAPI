@@ -3,6 +3,7 @@ CREATE TABLE "plans" (
     "id" TEXT NOT NULL PRIMARY KEY,
     "name" TEXT NOT NULL,
     "price" REAL NOT NULL,
+    "isActive" BOOLEAN NOT NULL DEFAULT true,
     "billing_cycle" TEXT NOT NULL
 );
 
@@ -15,3 +16,6 @@ CREATE TABLE "subscriptions" (
     "next_billing_date" DATETIME NOT NULL,
     CONSTRAINT "subscriptions_plan_id_fkey" FOREIGN KEY ("plan_id") REFERENCES "plans" ("id") ON DELETE RESTRICT ON UPDATE CASCADE
 );
+
+-- CreateIndex
+CREATE UNIQUE INDEX "plans_name_key" ON "plans"("name");

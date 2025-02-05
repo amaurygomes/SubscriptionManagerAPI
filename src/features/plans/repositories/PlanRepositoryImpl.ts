@@ -1,5 +1,6 @@
 import { Plan } from "../entities/Plan";
-import { Billing_Cycle, PlanDTO, PlanOutputDTO } from "../planDTO";
+import { Billing_Cycle } from "@/enums/BillingCycle";
+import { PlanDTO, PlanOutputDTO } from "../PlanDTO";
 import { PlanRepository } from "./PlanRepository";
 
 import { PrismaClient } from '@prisma/client'
@@ -9,13 +10,14 @@ const prisma = new PrismaClient()
 export class PlanRepositoryImpl implements PlanRepository {
 
     async save(planData: PlanDTO): Promise<void> {
-        const newPlan = new Plan(planData.name, planData.price, planData.billing_cycle)
+        const newPlan = new Plan(planData.name, planData.price, planData.isActive, planData.billing_cycle)
         await prisma.plan.create(
             {
                 data: {
                     id: newPlan.id,
                     name: newPlan.name,
                     price: newPlan.price,
+                    isActive: newPlan.isActive,
                     billing_cycle: newPlan.billing_cycle
                 }
             }
@@ -23,7 +25,7 @@ export class PlanRepositoryImpl implements PlanRepository {
         return
     }
 
-    async findById(id: string): Promise<PlanOutputDTO> {
+    async findById(id: string): Promise<PlanOutputDTO | null> {
         const plan = await prisma.plan.findUnique({
             where: {
                 id: id
@@ -35,14 +37,36 @@ export class PlanRepositoryImpl implements PlanRepository {
                 id: plan.id,
                 name: plan.name,
                 price: plan.price,
+                isActive: plan.isActive,
                 billing_cycle: plan.billing_cycle as Billing_Cycle,
             };
 
             return planOut;
         }
 
-        throw new Error(`The plan with the given (${id}) does not exist`);
+        return null
+    }
 
+    async findByName(name: string): Promise<PlanOutputDTO | null> {
+        const plan = await prisma.plan.findUnique({
+            where: {
+                name: name
+            }
+        });
+
+        if (plan) {
+            const planOut: PlanOutputDTO = {
+                id: plan.id,
+                name: plan.name,
+                price: plan.price,
+                isActive: plan.isActive,
+                billing_cycle: plan.billing_cycle as Billing_Cycle,
+            };
+
+            return planOut;
+        }
+
+        return null
     }
 
 
@@ -54,6 +78,7 @@ export class PlanRepositoryImpl implements PlanRepository {
             id: plan.id,
             name: plan.name,
             price: plan.price,
+            isActive: plan.isActive,
             billing_cycle: plan.billing_cycle as Billing_Cycle
         }));
     }
