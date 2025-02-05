@@ -1,6 +1,6 @@
-import { CustomError } from "@/errors/CustomError";
-import { PlanRepository } from "../repositories/PlanRepository";
+import { CustomError } from "@/messages/errors/CustomError";
 import { ERROR_MESSAGES } from "@/messages/PlanMessage";
+import { PlanRepository } from "../repositories/PlanRepository";
 
 
 export class DeletePlansUseCase {

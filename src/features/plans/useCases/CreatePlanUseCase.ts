@@ -1,12 +1,13 @@
-import { CustomError } from "@/errors/CustomError";
-import { PlanDTO } from "../PlanDTO";
-import { PlanRepository } from "../repositories/PlanRepository";
+import { CustomError } from "@/messages/errors/CustomError";
+import { PlanRepository } from "@/features/plans/repositories/PlanRepository";
 import { ERROR_MESSAGES } from "@/messages/PlanMessage";
+import { PlanInputDTO } from "../PlanDTO";
+
 
 export class CreatePlanUseCase {
     constructor(private planRepository: PlanRepository) { }
 
-    async execute(planData: PlanDTO): Promise<void> {
+    async execute(planData: PlanInputDTO): Promise<void> {
 
         const existingPlan = await this.planRepository.findByName(planData.name);
 

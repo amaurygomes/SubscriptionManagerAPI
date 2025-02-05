@@ -1,5 +1,6 @@
+import { SubscriptionStatus } from "@/enums/SubscriptionStatus";
 import { v4 as uuidv4 } from "uuid";
-import { SubscriptionStatus } from "../SubscriptionDTO";
+
 
 
 export class Subscription {

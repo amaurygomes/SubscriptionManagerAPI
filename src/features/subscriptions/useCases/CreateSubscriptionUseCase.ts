@@ -1,15 +1,17 @@
+import { SubscriptionStatus } from "@/enums/SubscriptionStatus";
 import { SubscriptionRepository } from "../repositories/SubscriptionRepository";
-import { Billing_Cycle, SubscriptionDTO, SubscriptionStatus } from "../SubscriptionDTO";
+import { SubscriptionInputDTO } from "../SubscriptionDTO";
+
 
 
 export class CreateSubscriptionUseCase {
   constructor(private subscriptionRepository: SubscriptionRepository) { }
 
-  execute(subscriptionData: SubscriptionDTO): SubscriptionDTO {
+  execute(subscriptionData: SubscriptionInputDTO): SubscriptionInputDTO {
 
 
 
-    const subscriptionToSave: SubscriptionDTO = {
+    const subscriptionToSave: SubscriptionInputDTO = {
       ...subscriptionData,
       status: subscriptionData.status ?? SubscriptionStatus.PENDING,
     };

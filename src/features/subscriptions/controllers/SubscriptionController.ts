@@ -1,4 +1,4 @@
-import { SubscriptionDTO } from "../SubscriptionDTO";
+import { SubscriptionInputDTO } from "../SubscriptionDTO";
 import { CreateSubscriptionUseCase } from "../useCases/CreateSubscriptionUseCase";
 
 export class SubscriptionController {
@@ -7,7 +7,7 @@ export class SubscriptionController {
 
   ) { }
 
-  async createSubscription(data: SubscriptionDTO) {
+  async createSubscription(data: SubscriptionInputDTO) {
     return await this.createSubscriptionUseCase.execute(data);
   }
 

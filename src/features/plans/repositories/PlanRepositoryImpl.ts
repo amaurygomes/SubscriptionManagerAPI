@@ -1,15 +1,16 @@
 import { Plan } from "../entities/Plan";
 import { Billing_Cycle } from "@/enums/BillingCycle";
-import { PlanDTO, PlanOutputDTO } from "../PlanDTO";
 import { PlanRepository } from "./PlanRepository";
 
 import { PrismaClient } from '@prisma/client'
+import { PlanInputDTO, PlanOutputDTO } from "../PlanDTO";
+
 
 const prisma = new PrismaClient()
 
 export class PlanRepositoryImpl implements PlanRepository {
 
-    async save(planData: PlanDTO): Promise<void> {
+    async save(planData: PlanInputDTO): Promise<void> {
         const newPlan = new Plan(planData.name, planData.price, planData.isActive, planData.billing_cycle)
         await prisma.plan.create(
             {

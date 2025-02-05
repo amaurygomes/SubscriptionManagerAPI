@@ -1,8 +1,9 @@
-import { PlanDTO } from "../PlanDTO";
-import { CreatePlanUseCase } from "../useCases/CreatePlanUseCase";
 import { DeletePlansUseCase } from "../useCases/DeletePlanUseCase";
 import { ListPlansUseCase } from "../useCases/ListPlansUseCase";
 import { SUCCESS_MESSAGES } from "@/messages/PlanMessage";
+import { CreatePlanUseCase } from "../useCases/CreatePlanUseCase";
+import { PlanInputDTO } from "../PlanDTO";
+
 
 export class PlanController {
   constructor(
@@ -11,7 +12,7 @@ export class PlanController {
     private deletePlanUseCase: DeletePlansUseCase
   ) { }
 
-  async createPlan(data: PlanDTO) {
+  async createPlan(data: PlanInputDTO) {
     await this.createPlanUseCase.execute(data);
     return {
       statuscode: 200,

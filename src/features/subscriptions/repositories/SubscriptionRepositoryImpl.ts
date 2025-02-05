@@ -1,8 +1,12 @@
-import { SubscriptionDTO, SubscriptionStatus } from "../SubscriptionDTO";
+import { SubscriptionStatus } from "@/enums/SubscriptionStatus";
+
 import { SubscriptionRepository } from "./SubscriptionRepository";
+import { SubscriptionInputDTO } from "../SubscriptionDTO";
+import { Subscription } from "../entities/Subscription";
+import { calculateExpirationDate } from "../helpers/SubscriptionDateExpirationHelper";
 
 export class SubscriptionRepositoryImpl implements SubscriptionRepository {
-    private subscriptions: SubscriptionDTO[] = [
+    private subscriptions: SubscriptionInputDTO[] = [
         {
             plan_id: 'plan_1',
             customer_email: 'user1@email.com',
@@ -23,9 +27,9 @@ export class SubscriptionRepositoryImpl implements SubscriptionRepository {
         }
     ];
 
-    save(subscription: SubscriptionDTO): void {
-        this.subscriptions.push(subscription);
-        console.log("Assinatura salva:", subscription);
+    save(subscription: SubscriptionInputDTO): void {
+        const next_billing_date = calculateExpirationDate(subscription.next_billing_date)
+        const new Subscription(subscription.plan_id, subscription.customer_email, subscription.status,)
     }
 
     deleteById(id: string): void {

@@ -1,10 +1,10 @@
 import { FastifyInstance, FastifyPluginAsync } from 'fastify';
 import { subscriptionModule } from '@/features/subscriptions/SubscriptionModule';
-import { SubscriptionDTO } from '@/features/subscriptions/SubscriptionDTO';
+import { SubscriptionInputDTO } from '@/features/subscriptions/SubscriptionInputDTO';
 
 const subscriptionRoutes: FastifyPluginAsync = async (fastify: FastifyInstance) => {
   fastify.post('/subscriptions', async (request, reply) => {
-    const { plan_id, customer_email, status, next_billing_date } = request.body as SubscriptionDTO;
+    const { plan_id, customer_email, status, next_billing_date } = request.body as SubscriptionInputDTO;
     try {
       const response = await subscriptionModule.createSubscription({ plan_id, customer_email, status, next_billing_date });
       return reply.status(201).send(response);

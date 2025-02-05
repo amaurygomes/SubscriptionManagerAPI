@@ -1,6 +1,7 @@
-import { Billing_Cycle } from "../../enums/BillingCycle";
+import { Billing_Cycle } from "@/enums/BillingCycle";
 
-export interface PlanDTO {
+
+export interface PlanInputDTO {
     name: string;
     price: number;
     isActive: boolean;

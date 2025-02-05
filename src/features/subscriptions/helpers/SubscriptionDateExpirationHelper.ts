@@ -1,6 +1,6 @@
-import { Billing_Cycle } from "../SubscriptionDTO";
+import { Billing_Cycle } from "@/enums/BillingCycle";
 
-export function calculateExpirationDate(billing_cycle: Billing_Cycle): Date {
+export function calculateExpirationDate(billing_cycle: Billing_Cycle) {
   const todayDate = new Date();
 
   if (billing_cycle === "monthly") {

@@ -1,17 +1,6 @@
-export enum SubscriptionStatus {
-    PENDING = "pending",
-    ACTIVE = "active",
-    CANCELED = "canceled",
-    SUSPENDED = "suspended"
-}
+import { SubscriptionStatus } from "@/enums/SubscriptionStatus";
 
-export enum Billing_Cycle {
-    WEEKLY = "weekly",
-    MONTHLY = "monthly",
-    ANNUAL = "annual"
-}
-
-export interface SubscriptionDTO {
+export interface SubscriptionInputDTO {
     plan_id: string;
     customer_email: string;
     status?: SubscriptionStatus;

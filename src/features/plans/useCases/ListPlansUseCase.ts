@@ -1,12 +1,13 @@
-import { CustomError } from "@/errors/CustomError";
-import { PlanDTO } from "../PlanDTO";
-import { PlanRepository } from "../repositories/PlanRepository";
+import { CustomError } from "@/messages/errors/CustomError";
 import { ERROR_MESSAGES } from "@/messages/PlanMessage";
+import { PlanRepository } from "../repositories/PlanRepository";
+import { PlanInputDTO } from "../PlanDTO";
+
 
 export class ListPlansUseCase {
     constructor(private planRepository: PlanRepository) { }
 
-    async execute(): Promise<PlanDTO[]> {
+    async execute(): Promise<PlanInputDTO[]> {
 
         const plans = await this.planRepository.findAll();
 
