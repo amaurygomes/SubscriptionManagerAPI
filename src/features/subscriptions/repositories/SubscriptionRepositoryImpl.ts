@@ -18,7 +18,7 @@ export class SubscriptionRepositoryImpl implements SubscriptionRepository {
                 id: newSubscription.id,
                 plan_id: newSubscription.plan_id,
                 customer_email: newSubscription.customer_email,
-                status: newSubscription.status,
+                status: newSubscription.status as string,
                 next_billing_date: newSubscription.next_billing_date
             }
         })
