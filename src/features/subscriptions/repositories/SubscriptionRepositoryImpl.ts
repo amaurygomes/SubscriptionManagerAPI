@@ -1,9 +1,10 @@
 import { SubscriptionRepository } from "./SubscriptionRepository";
 import { SubscriptionInputDTO, SubscriptionOutputDTO, SubscriptionUpdateDTO } from "../SubscriptionDTO";
-
-import { PrismaClient } from '@prisma/client'
 import { Subscription } from "../entities/Subscription";
 import { getBillingCycleType } from "@/helpers/getBillingCycleTypeHelper";
+import { SubscriptionStatus } from "@/enums/SubscriptionStatus";
+
+import { PrismaClient } from '@prisma/client'
 
 const prisma = new PrismaClient()
 
@@ -43,8 +44,16 @@ export class SubscriptionRepositoryImpl implements SubscriptionRepository {
     }
 
     async update(subscription: SubscriptionUpdateDTO): Promise<void> {
-        const id = subscription.id
-        console.log(`Falta inplementar para atualizar o id: ${id}`)
+        const { id, status, ...data } = subscription;
+
+        if (status && !Object.values(SubscriptionStatus).includes(status as SubscriptionStatus)) {
+            throw new Error(`Invalid status: ${status}`);
+        }
+
+        await prisma.subscription.update({
+            where: { id },
+            data: { ...data, status }
+        });
     }
 
     deleteById(id: string): void {

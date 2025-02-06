@@ -31,7 +31,7 @@ const subscriptionRoutes: FastifyPluginAsync = async (fastify: FastifyInstance) 
     }
   });
 
-  fastify.put('/subscriptions', async (request, reply) => {
+  fastify.put('/subscription', async (request, reply) => {
     const { id, customer_email, status } = request.body as SubscriptionUpdateDTO;
     try {
       const response = await subscriptionModule.updateSubscription({ id, customer_email, status });

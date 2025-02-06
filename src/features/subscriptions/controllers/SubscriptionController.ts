@@ -25,7 +25,7 @@ export class SubscriptionController {
   async updateSubscription(data: SubscriptionUpdateDTO) {
     await this.updateSubscriptionUseCase.execute(data);
     return {
-      statuscode: 204,
+      statuscode: 201,
       message: SUCCESS_MESSAGES.subscriptionUpdated(data.id)
     }
   }
